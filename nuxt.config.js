@@ -28,18 +28,30 @@ module.exports = {
    */
   loading: { color: "#3B8070" },
 
-  modules: [
-    "@nuxtjs/axios" //引入axios模块
-  ],
+  modules: ["@nuxtjs/axios", "@nuxtjs/proxy"],
 
   env: {
-    BASE_API: "http://localhost"
+    BASE_API: "http://localhost:8000"
   },
 
   axios: {
     // Axios options here
-    baseURL: "http://localhost"
+    proxy: true
   },
 
-  plugins: ["~/plugins/element-ui.js", "~/plugins/vue-qriously-plugin.js"]
+  proxy: {
+    "/api": {
+      changeOrigin: true,
+      target: "http://127.0.0.1:8000", // 允许跨域的服务器地址
+      pathRewrite: {
+        "^/api": ""
+      }
+    }
+  },
+
+  plugins: [
+    "~/plugins/axios.js",
+    "~/plugins/element-ui.js",
+    "~/plugins/vue-qriously-plugin.js"
+  ]
 };
