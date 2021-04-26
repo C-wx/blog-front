@@ -2,13 +2,10 @@ import { Message } from "element-ui";
 
 export default function({ $axios, redirect }) {
   $axios.onRequest(config => {
-    // let userInfo = cookie.get("userInfo");
-    // if (userInfo) {
-    //   // debugger
-    //   userInfo = JSON.parse(userInfo);
-    //   config.headers["token"] = userInfo.token;
-    // }
-    console.log("Making request to " + config.url);
+    let token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = token;
+    }
   });
 
   $axios.onRequestError(error => {
@@ -16,7 +13,6 @@ export default function({ $axios, redirect }) {
   });
 
   $axios.onResponse(response => {
-    console.log("Reciving resposne", response);
     if (response.data.code === 0) {
       return response;
     }

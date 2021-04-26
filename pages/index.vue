@@ -1,65 +1,93 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <h1 class="title">
-        blog-front
-      </h1>
-      <h2 class="subtitle">
-        cbuc blog front
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
-  </section>
+  <div v-title data-title="ForFun Find Yourself">
+    <el-container>
+      <el-main class="me-articles">
+        <article-scroll-page></article-scroll-page>
+      </el-main>
+
+      <el-aside>
+        <cardMe class="me-area" />
+        <!-- <card-tag :tags="hotTags"></card-tag>
+
+        <card-article
+          cardHeader="最热文章"
+          :articles="hotArticles"
+        ></card-article>
+
+        <card-archive cardHeader="文章归档" :archives="archives"></card-archive>
+
+        <card-article
+          cardHeader="最新文章"
+          :articles="newArticles"
+        ></card-article> -->
+      </el-aside>
+    </el-container>
+  </div>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+import CardMe from "@/components/card/CardMe";
+// import CardArticle from "@/components/card/CardArticle";
+// import CardArchive from "@/components/card/CardArchive";
+// import CardTag from "@/components/card/CardTag";
+// import ArticleScrollPage from "@/views/common/ArticleScrollPage";
+
+// import { getArticles, getHotArtices, getNewArtices } from "@/api/article";
+// import { getHotTags } from "@/api/tag";
+// import { listArchives } from "@/api/article";
 
 export default {
+  name: "Index",
+  created() {
+    this.getHotArtices();
+    this.getNewArtices();
+    this.getHotTags();
+    this.listArchives();
+  },
+  data() {
+    return {
+      hotTags: [],
+      hotArticles: [],
+      newArticles: [],
+      archives: []
+    };
+  },
+  methods: {
+    getHotArtices() {},
+    getNewArtices() {},
+    getHotTags() {},
+    listArchives() {}
+  },
   components: {
-    AppLogo
+    CardMe
+    // "card-article": CardArticle,
+    // "card-tag": CardTag,
+    // ArticleScrollPage,
+    // CardArchive
   }
-}
+};
 </script>
 
-<style>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style scoped>
+.el-container {
+  width: 960px;
 }
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.el-aside {
+  margin-left: 20px;
+  width: 260px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.el-main {
+  padding: 0px;
+  line-height: 16px;
 }
 
-.links {
-  padding-top: 15px;
+.el-card {
+  border-radius: 0;
+}
+
+.el-card:not(:first-child) {
+  margin-top: 20px;
 }
 </style>
-

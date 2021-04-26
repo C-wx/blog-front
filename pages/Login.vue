@@ -48,6 +48,7 @@
 
 <script>
 import "~/assets/css/login.css";
+import { Message } from "element-ui";
 export default {
   name: "Login",
   data() {
@@ -74,7 +75,13 @@ export default {
     //登录
     login() {
       this.$axios.$post("/api/userApi/login", this.userInfo).then(response => {
-        console.log(response);
+        localStorage.setItem("token", response.data);
+        Message({
+          message: "登录成功",
+          type: "success",
+          center: true,
+          duration: 5 * 1000
+        });
       });
     },
     register() {
