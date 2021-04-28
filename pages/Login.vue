@@ -76,6 +76,7 @@ export default {
     login() {
       this.$axios.$post("/api/userApi/login", this.userInfo).then(response => {
         localStorage.setItem("token", response.data);
+        this.store.commit("setToken", response.data);
         Message({
           message: "登录成功",
           type: "success",

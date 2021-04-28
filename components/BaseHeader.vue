@@ -2,12 +2,10 @@
   <el-header class="me-area">
     <el-row class="me-header">
       <el-col :span="4" class="me-header-left">
-        <router-link to="/" class="me-title">
-          <!-- <img src="../assets/img/logo.png"/> -->
-        </router-link>
+        <div style="text-align:center;font-size:33px">LOGO</div>
       </el-col>
 
-      <el-col v-if="!simple" :span="16">
+      <el-col :span="16">
         <el-menu
           :router="true"
           menu-trigger="click"
@@ -15,24 +13,14 @@
           :default-active="activeIndex"
           mode="horizontal"
         >
-          <el-menu-item index="/">首页</el-menu-item>
-          <el-menu-item index="/category/all">文章分类</el-menu-item>
-          <el-menu-item index="/tag/all">标签</el-menu-item>
-          <el-menu-item index="/archives">文章归档</el-menu-item>
-          <el-menu-item index="/log">日志</el-menu-item>
-          <el-menu-item index="/messageBoard">留言板</el-menu-item>
-
-          <el-col :span="4" :offset="4">
-            <el-menu-item index="/write"
-              ><i class="el-icon-edit"></i>写文章</el-menu-item
-            >
-          </el-col>
+          <el-menu-item id="item" index="/">首页</el-menu-item>
+          <el-menu-item id="item" index="/category/all">文章分类</el-menu-item>
+          <el-menu-item id="item" index="/tag/all">标签</el-menu-item>
+          <el-menu-item id="item" index="/archives">文章归档</el-menu-item>
+          <el-menu-item id="item" index="/log">日志</el-menu-item>
+          <el-menu-item id="item" index="/messageBoard">留言板</el-menu-item>
         </el-menu>
       </el-col>
-
-      <template v-else>
-        <slot></slot>
-      </template>
 
       <el-col :span="4">
         <el-menu
@@ -44,9 +32,6 @@
           <template v-if="!user.login">
             <el-menu-item index="/login">
               <el-button type="text">登录</el-button>
-            </el-menu-item>
-            <el-menu-item index="/register">
-              <el-button type="text">注册</el-button>
             </el-menu-item>
           </template>
 
@@ -70,38 +55,23 @@
 export default {
   name: "BaseHeader",
   props: {
-    activeIndex: String,
-    simple: {
-      type: Boolean,
-      default: false
-    }
+    activeIndex: String
   },
   data() {
     return {};
   },
   computed: {
     user() {
-      let login = 1;
       // let avatar = this.$store.state.avatar;
+      // let login = this.$store.token;
+      let login = this.store.getters.getToken;
       return {
         login
       };
     }
   },
   methods: {
-    logout() {
-      // let that = this;
-      // this.$store
-      //   .dispatch("logout")
-      //   .then(() => {
-      //     this.$router.push({ path: "/" });
-      //   })
-      //   .catch(error => {
-      //     if (error !== "error") {
-      //       that.$message({ message: error, type: "error", showClose: true });
-      //     }
-      //   });
-    }
+    logout() {}
   }
 };
 </script>
@@ -135,5 +105,9 @@ export default {
   border-radius: 50%;
   vertical-align: middle;
   background-color: #5fb878;
+}
+
+#item:hover {
+  color: #5fb878;
 }
 </style>

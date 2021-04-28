@@ -50,6 +50,7 @@ module.exports = {
   },
 
   plugins: [
+    "~/plugins/store.js",
     "~/plugins/axios.js",
     "~/plugins/element-ui.js",
     "~/plugins/vue-qriously-plugin.js"

@@ -1,7 +1,11 @@
 <template>
   <div>
-    <base-header />
-    <Nuxt />
+    <el-container>
+      <base-header class="header111" />
+
+      <Nuxt class="container" />
+    </el-container>
+
     <!-- <app-footer /> -->
   </div>
 </template>
@@ -15,3 +19,11 @@ export default {
   }
 };
 </script>
+<style>
+.header {
+  position: relative;
+}
+.container {
+  margin: 100px auto 140px;
+}
+</style>

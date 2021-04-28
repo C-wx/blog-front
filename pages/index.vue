@@ -1,8 +1,8 @@
 <template>
-  <div v-title data-title="ForFun Find Yourself">
+  <div>
     <el-container>
       <el-main class="me-articles">
-        <article-scroll-page></article-scroll-page>
+        <!-- <article-scroll-page></article-scroll-page> -->
       </el-main>
 
       <el-aside>
